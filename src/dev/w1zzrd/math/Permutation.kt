@@ -22,6 +22,7 @@ class Permutation {
      */
     operator fun times(perm: Permutation)
             = Permutation(this(*perm(*orderedElements)).zip(orderedElements)    // Generate transpositions
+        .filterNot{ it.first == it.second }
         .foldRight(ArrayList<Pair<Char, Char>>()){                              // Deduplicate transpositions
                 insert, acc ->
             acc.firstOrNull {
